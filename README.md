@@ -81,7 +81,7 @@ The user should be able to fill out forms to create a board and board item and
 have it show up in the UI, no matter how it looks. No styling is required (I
 encourage you to worry about styling later).
 
-### Week 
+### Week 2
 
 Completion of rest of the feature
 
@@ -117,8 +117,7 @@ imagination and look around for inspiration.
 - Please read the React documentation for function components
 - Please read the Firebase documentation
 - Look at lots of example code when writing your app
-- Work together with your partner, no one should be asymmetrically writing all
-  of the code.
+- Work together with your partners, split the work and use gitub issues and pull requests
 
 ## Extra credit
 
