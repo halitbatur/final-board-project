@@ -142,7 +142,6 @@ In this project we will be practicing the work enviornment similar to the one we
 ### Repo managment
 
 - One of the teammates will have to fork this repo and then add other teammates as collaborators to the project
-  ![The collaborators section on the repo](./collab.png)
 - Now that everyone is added as collaborators, make sure to clone the repo to your local machine because this is where we will do all our work
 - To collaborate effectively together you will follow an approach similar to [SCRUM](https://www.atlassian.com/agile/scrum)
 
