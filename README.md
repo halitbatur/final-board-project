@@ -134,3 +134,45 @@ imagination and look around for inspiration.
 - Allow users to rearrange the board via drag and drop (and persist the order in
   the backend!). Take a look at the
   [react-dnd](https://github.com/react-dnd/react-dnd) library.
+  
+  ## Teamwork guide
+
+In this project we will be practicing the work enviornment similar to the one we will have during our capstones so please read the following section carefully and feel free to do your research or ask us any questions incase you need help
+
+### Repo managment
+
+- One of the teammates will have to fork this repo and then add other teammates as collaborators to the project
+  ![The collaborators section on the repo](./collab.png)
+- Now that everyone is added as collaborators, make sure to clone the repo to your local machine because this is where we will do all our work
+- To collaborate effectively together you will follow an approach similar to [SCRUM](https://www.atlassian.com/agile/scrum)
+
+### Project planning
+
+_please read this section carefully and follow these steps during the project_
+
+- The first phase of the project we would like you to have a meeting with your teammates and start to map out the tasks you will need to do to finish the project, ex: Work on the single actor page, Style the current home page, Work on the navbar, etc.
+
+- Some of the tasks might be big so make sure to split these into smaller tasks that you can finish in a day or two, ex: Fetch data for the actor page, Style the actor page, Style the navbar, etc.
+
+- On your repository create an issue for each task you will be working on with a description of what you will be doing and assign it to the person who will work on this issue (You will see an issues tab on the repo)
+
+- We recommend assigning issues that you think you can finish in a week, this way you can keep track of your progress and make sure you are not overloading yourself with too many tasks
+
+- [Daily standup meetings](https://www.youtube.com/watch?v=er9gntPjTJU) is a great way to keep track of your progress and make sure you are on the same page with your teammates, we recommend having a meeting every morning to discuss what you did yesterday, what you will be doing today and if you have any blockers
+
+- You will repeat this process weekly until you finish the project
+
+### Git workflow
+
+- Now that you have your issues created, you can start working on them, make sure to create a new branch for each issue you are working on and name it something like `actor-page` or `navbar` and then push your code to that branch
+
+- After you push your branch to the repo, you can create a pull request and assign it to your teammate who will review your code and merge it to the main branch, make sure to link the issue to the pull request so it will be closed automatically once the pull request is merged
+
+- After two of your teammates have reviewed your code and approved it, you can merge it to the main branch, please watch this video on how to [review code](https://www.youtube.com/watch?v=HW0RPaJqm4g)
+
+- These are things to look for while you are reviewing code:
+
+  - Is the code clean and easy to read?
+  - Are there any bugs?
+  - Is the code efficient?
+  - Is the code following the best practices?
