@@ -1,4 +1,7 @@
 import "./App.css";
+import app from './firebase/initFirebase'
+
+console.log(app);
 
 function App() {
   return (
