@@ -1,15 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+boardify/node_modules
+boardify/.pnp
+boardify/.pnp.js
+boardify/package-lock.json
 
 # testing
-/coverage
+boardify/coverage
 
 # production
-/build
+boardify/build
 
 # misc
 .DS_Store
@@ -18,6 +19,6 @@
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+boardify/npm-debug.log*
+boardify/yarn-debug.log*
+boardify/yarn-error.log*
