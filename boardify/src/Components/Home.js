@@ -35,9 +35,11 @@ function Home() {
   return ( 
     <div>
       <BoardForm />
-      <ToggleButton />
     </div>
   );
 }
 
 export default Home;
+
+
+
