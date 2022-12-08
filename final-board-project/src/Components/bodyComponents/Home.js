@@ -1,6 +1,7 @@
 import React from "react";
 import BoardForm from "../forms/BoardForm";
 import { useState } from "react";
+
 export default function Home() {
   const [boardClick, setBoardClick] = useState(false);
   return (
