@@ -1,4 +1,5 @@
 import "./App.css";
+
 import { Routes, Route } from "react-router";
 import Home from "./page/Home";
 import AddProject from "./page/AddProject";
@@ -6,6 +7,11 @@ import Projects from "./page/Projects";
 import SideBar from "./components/Navigation/SideBar";
 import Login from "./page/Login";
 import Profile from "./page/Profile";
+
+import app from './firebase/initFirebase'
+
+console.log(app);
+
 
 function App() {
   return (
