@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import BoardList from "./BoardList";
+import ToggleButton from "./ToggleButton";
 
 function BoardForm() {
   const [formInputs, setFormInputs] = useState({
@@ -16,10 +17,7 @@ function BoardForm() {
     e.preventDefault();
     setBoardInputs((prev) => [...prev, formInputs]);
     setFormInputs({ title: "" });
-    //e.target.reset()
   };
-
-  //console.log(boardInputs);
 
   return (
     <>
@@ -45,6 +43,7 @@ function BoardForm() {
         />
       </form>
     </div>
+    <ToggleButton />
     <div>
       <BoardList board={boardInputs}  />
     </div>
@@ -53,3 +52,4 @@ function BoardForm() {
 }
 
 export default BoardForm;
+
