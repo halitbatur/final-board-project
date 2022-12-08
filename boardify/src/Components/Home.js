@@ -1,45 +1,60 @@
-import React  from 'react';
+import React, { useEffect } from "react";
 import BoardForm from "./BoardForm";
 import ToggleButton from "./ToggleButton";
-import {
-  useState,
-  useEffect
-} from "react";
-import db from '../backend/firebase-config';
-import {
-  collection,
-  getDocs
-} from "firebase/firestore";
-
+import BoardContainer from "./BoardContainer";
+import { collection, addDoc, onSnapshot,deleteDoc, doc  } from "firebase/firestore";
+import  db  from "../backend/firebase-config";
 
 function Home() {
-
-  const [boards, setBoards] = useState([]);
-  const boardsCollectionRef = collection(db , 'Boards');
- 
+  const [board, setBoard] = React.useState([]);
+  const [newBoard, setNewBoard] = React.useState([]);
 
   useEffect(() => {
 
-    const getBoards = async () => {
-      const data = await getDocs(boardsCollectionRef);
-      setBoards(data.docs.map((doc)=>({...doc.data() , id:doc.id})));
-    }
-    
-    getBoards();
-    
-  }, []);
+    onSnapshot(collection(db, "boards"), (snapshot) => {
+      snapshot.docChanges().forEach((docChange) => {
+        if (docChange.type === "added") {
+          setBoard((prevBoardList) => [...prevBoardList, docChange.doc.data()]);
+        }
+      });
+    });
 
+  },[]);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addDoc(collection(db, "boards"), {
+      ...newBoard,
+    });
+    setNewBoard({
+      title: "",
+    });
+  };
 
-   console.log(boards);
-  return ( 
+  const handleOnChange = (event) => {
+    const keyName = event.target.name;
+    const value = event.target.value;
+    setNewBoard((prev) => {
+      return { ...prev, [keyName]: value };
+    });
+  };
+
+  const handleDeleteBoard = async (id) => {
+    await deleteDoc(doc(db,"boards",id))
+  };
+
+  return (
     <div>
-      <BoardForm />
+      <BoardForm
+        onSubmitt={handleSubmit}
+        onChange={handleOnChange}
+        newBoard={newBoard}
+      />
+      <ToggleButton />
+      <BoardContainer board={board} onDelete={handleDeleteBoard} />
     </div>
   );
 }
 
 export default Home;
-
-
 

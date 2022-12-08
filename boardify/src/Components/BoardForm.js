@@ -1,53 +1,32 @@
-import React, { useState } from "react";
-import BoardList from "./BoardList";
-import ToggleButton from "./ToggleButton";
+import React from "react";
 
-function BoardForm() {
-  const [formInputs, setFormInputs] = useState({
-    title: "",
-  });
-
-  const handleChange = (e) => {
-    setFormInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const [boardInputs, setBoardInputs] = useState([]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setBoardInputs((prev) => [...prev, formInputs]);
-    setFormInputs({ title: "" });
-  };
-
+function BoardForm({onSubmitt,onChange,newBoard}) {
+ 
   return (
-    <>
-    <div className="pt-20">
+    <div className="pt-2">
       <form
-        onSubmit={handleSubmit}
         className="border-4 border-black mx-auto justify-center
-      align-center max-w-sm md:max-w-md text-xl px-10 pb-10"
+      align-center max-w-sm md:max-w-md text-xl px-10 pb-10 mt-5"
+      onSubmit={onSubmitt}
       >
         <h1 className="text-center py-5 font-bold">Board Creation</h1>
         <input
-          className="border-4 border-black placeholder:italic pl-2 placeholder:pl-1"
+          className="border-4 border-black placeholder:italic pl-2
+          placeholder:pl-1"
+          value={newBoard.title}
           type="text"
           name="title"
           placeholder="enter a board title"
-          value={formInputs.title}
-          onChange={handleChange}
+          onChange={onChange}
         />
         <input
-          className="px-3 py-1 bg-black text-white hover:bg-red-800 hover:cursor-pointer hover:font-bold"
+          className="px-3 py-1 bg-black text-white hover:bg-red-800
+          hover:cursor-pointer hover:font-bold"
           type="submit"
           value="Submit"
         />
       </form>
     </div>
-    <ToggleButton />
-    <div>
-      <BoardList board={boardInputs}  />
-    </div>
-    </>
   );
 }
 
