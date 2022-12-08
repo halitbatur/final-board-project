@@ -1,11 +1,10 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Components/bodyComponents/Home";
 import About from "./Components/bodyComponents/About";
 function App() {
   return (
-    <div className="App">
+    <div className="bg-gray-50 h-screen">
       <Navbar />
       <Routes>
         <Route path="/home" element={<Home />} />
