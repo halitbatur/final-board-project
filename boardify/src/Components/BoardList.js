@@ -10,5 +10,4 @@ function BoardList({ board }) {
     )
 }
 
-
 export default BoardList;
