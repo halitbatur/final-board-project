@@ -16,10 +16,7 @@ function BoardForm() {
     e.preventDefault();
     setBoardInputs((prev) => [...prev, formInputs]);
     setFormInputs({ title: "" });
-    //e.target.reset()
   };
-
-  //console.log(boardInputs);
 
   return (
     <>
