@@ -44,7 +44,7 @@ export default function SideBar() {
 
   return (
     <div className=" h-full ml-5  fixed  text-[#ffffff]">
-      <ul className="flex mx-5 flex-col h-full w-48 items-start  justify-center gap-10">
+      <ul className="flex mx-5 flex-col h-full w-48 items-start font-Main justify-center gap-10">
         {pages.map((page) => (
           <li className="">
             <NavLink
