@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { NavLink, useParams, useLocation } from "react-router-dom";
+import ModeToggle from "../theme/ModeToggle";
 export default function SideBar() {
   const { projects } = useParams();
 
@@ -53,7 +54,7 @@ export default function SideBar() {
                 isActive
                   ? ` ${setIsFill(
                       true
-                    )} bg-[#ffffff]  text-4xl duration-150 scale-110 transition-all text-[#0037b3] flex gap-5 justify-start items-center py-3 w-64 px-7 rounded-l-full `
+                    )} bg-[#ffffff] dark:bg-[#121212] text-4xl duration-150 scale-110 transition-all text-[#018786] dark:text-[#03dac6] flex gap-5 justify-start items-center py-3 w-64 px-7 rounded-l-full `
                   : `${setIsFill(
                       false
                     )} transition-all  text-4xl  flex gap-5 justify-start items-center `
@@ -66,6 +67,9 @@ export default function SideBar() {
             </NavLink>
           </li>
         ))}
+        <li className="">
+          <ModeToggle></ModeToggle>
+        </li>
       </ul>
     </div>
   );
