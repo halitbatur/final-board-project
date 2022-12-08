@@ -1,6 +1,21 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import {firebase} from "../../utils/firebase"
 
 export default function BoardForm(props) {
+
+  // const [boards, setBoards] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  // const ref = firebase.firestore().collection("fianl-board-project")
+ 
+  // useEffect(()=>{
+
+  // },[])
+  // if(loading){
+  //   return <h1>Loading...</h1>
+  // }
+  
   return props.trigger ? (
     <div className="w-full max-w-xs absolute top-1/2 translate-y-1/2 z-10 backdrop-blur-3xl">
       <form className="bg-white shadow-md rounded px-8 pt-20 pb-8 mb-4 relative">
@@ -9,9 +24,9 @@ export default function BoardForm(props) {
           type="button"
           className="bg-white absolute top-0 right-0 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
         >
-          <span class="sr-only">Close menu</span>
+          <span className="sr-only">Close menu</span>
           <svg
-            class="h-6 w-6"
+            className="h-6 w-6"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -19,9 +34,9 @@ export default function BoardForm(props) {
             aria-hidden="true"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
