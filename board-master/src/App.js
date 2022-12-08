@@ -13,7 +13,7 @@ function App() {
       <h1 className="text-3xl font-bold underline text-red-500">
         Tailwind is work
       </h1>
-      <div className=" h-screen dark:bg-[#bb86fc] bg-[#0037b3] left-0 top-0  fixed w-64">
+      <div className=" h-screen  bg-[#6200ee] left-0 top-0  fixed w-52">
         <SideBar></SideBar>
       </div>
 
