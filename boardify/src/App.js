@@ -16,7 +16,7 @@ function App() {
           About
         </Link>
       </header>
-
+      
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
