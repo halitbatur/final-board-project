@@ -1,8 +1,22 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import {firebase} from "../../utils/firebase"
+import { doc, setDoc } from "firebase/firestore";
+import { async } from "@firebase/util";
+import db from "../../utils/firebase";
 
 export default function BoardForm(props) {
+  async function addingNotes(){
+
+    await setDoc(doc(db, "fianl-board-project","bbbbb"), {
+      name: "Los Angeles",
+      state: "CA",
+      country: "USA"
+    });
+  }
+  useEffect(()=>{
+    addingNotes()
+  },[])
 
   // const [boards, setBoards] = useState([]);
   // const [loading, setLoading] = useState(false);
