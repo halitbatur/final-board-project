@@ -4,7 +4,14 @@ import { motion } from "framer-motion";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
+import { getAuth , signInWithEmailAndPassword  } from "firebase/auth";
+import app from '../firebase/initFirebase'
+import { Route } from "react-router";
+import Home from "./Home";
+const auth = getAuth(app);
+
 export default function Login() {
+  
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -18,10 +25,42 @@ export default function Login() {
     }),
     onSubmit: (values) => {
       // in here send the values to the firebase login
+      signInWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => {
+        // Signed in 
+        
+        const user = userCredential.displayName;
+        console.log(user.uid);
+        
+        if (user.uid!=="") {
+          //Add the route here to the home page
+        // <Route path="/" element={<Home></Home>}></Route>
+          
+        }        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
       console.log(values.email, values.password);
     },
   });
   const [Hidepassword, setHidePassword] = useState("password");
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      console.log("user is signed in");
+      // ...
+    } else {
+      // User is signed out
+
+      // ...
+    }
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
