@@ -4,7 +4,7 @@ import React, {
 import TaskForm from "./TaskForm";
 import TaskCard from "./TaskCard";
 import  db  from "../backend/firebase-config.js";
-import { collection, addDoc, onSnapshot,deleteDoc, doc  } from "firebase/firestore";
+import { collection, addDoc, onSnapshot,deleteDoc, doc, updateDoc, setDoc  } from "firebase/firestore";
 
 function BoardCard({ board, onDelete}) {
 
@@ -25,11 +25,45 @@ function BoardCard({ board, onDelete}) {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
 
- 
+  const createTask = async (task) => {
+    // try {
+    //   // update docs in firebase
+    //   const docRef = await addDoc(collection(db, "boards", board.boardId, "tasks", task.taskId), {
+    //     title: task.newTask.title,
+    //     description: task.newTask.description,
+    //     boardId: task.newTask.boardId,
+    //     dueDate: task.newTask.dueDate,
+    //     assignee: task.newTask.assignee,
+    //     isCompleted: task.newTask.isCompleted,
+    //     taskId: task.newTask.taskId,
+    //   });
+    //   console.log("Document written with ID: ", docRef.id);
+    // } catch (e) {
+    //   console.error("Error adding document: ", e);
+    // }
+
+      const boards = collection(db, "boards");
+       const boardRef = doc(boards, board.boardId);
+      
+       console.log(boardRef);
+      // const tasks = collection(boardRef, "tasks");
+      // const taskRef = doc(tasks, task.taskId);
+      // await setDoc(taskRef, {
+      //   title: task.title,
+      //   description: task.description,
+      //   boardId: task.boardId,
+      //   dueDate: task.dueDate,
+      //   assignee: task.assignee,
+      //   isCompleted: task.isCompleted,
+      //   taskId: task.taskId,
+      // });
+    
+  };
 
   const handleTaskSubmit = (e) => {
     e.preventDefault();
-    // createDoc('tasks', newTask);
+    // create a new task in the firebase database
+    createTask(newTask);
     setTasks([...tasks, newTask]);
     setNewTask({
       title: '',

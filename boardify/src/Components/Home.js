@@ -7,7 +7,10 @@ import  db  from "../backend/firebase-config.js";
 
 function Home() {
   const [boards, setBoards] = React.useState([]);
-  const [newBoard, setNewBoard] = React.useState([]);
+  const [newBoard, setNewBoard] = React.useState({
+    title: "",
+    tasks: [],
+  });
 
   useEffect(() => {
 
@@ -26,12 +29,14 @@ function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   
+
     addDoc(collection(db, "boards"), {
       ...newBoard,
     });
+
     setNewBoard({
       title: "",
+      tasks: [],
     });
   };
 
