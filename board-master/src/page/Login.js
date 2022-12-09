@@ -87,7 +87,7 @@ export default function Login() {
               </label>
             </div>
           </label>
-          <button className="w-96 text-[#ffffff] bg-[#018786] dark:text-[#121212] text-3xl dark:bg-[#03dac6] hover:scale-110 transition-all hover:shadow-2xl active:shadow-lg px-3 py-3 rounded-full">
+          <button className="w-96 text-[#ffffff] bg-[#018786] dark:text-[#121212] text-3xl dark:bg-[#03dac6] hover:scale-110 transition-all active:scale-100 hover:shadow-2xl active:shadow-lg px-3 py-3 rounded-full">
             Login
           </button>
         </form>
