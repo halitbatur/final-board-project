@@ -14,7 +14,10 @@ function Home() {
     onSnapshot(collection(db, "boards"), (snapshot) => {
       snapshot.docChanges().forEach((docChange) => {
         if (docChange.type === "added") {
-          setBoards((prevBoardsList) => [...prevBoardsList, docChange.doc.data()]);
+          const boardId = docChange.doc.id ; 
+          const boardObj = {...docChange.doc.data() , boardId};
+          console.log(boardObj);
+          setBoards((prevBoardsList) => [...prevBoardsList, boardObj]);
         }
       });
     });
@@ -23,6 +26,7 @@ function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+   
     addDoc(collection(db, "boards"), {
       ...newBoard,
     });
@@ -40,7 +44,12 @@ function Home() {
   };
 
   const handleDeleteBoard = async (id) => {
-    await deleteDoc(doc(db,"boards",id))
+
+    await deleteDoc(doc(db, "boards", id));
+
+    const newBoards = boards.filter((board)=> board.boardId !== id);
+    setBoards(newBoards);
+
   };
 
   return (
