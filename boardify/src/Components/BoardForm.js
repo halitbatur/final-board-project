@@ -11,7 +11,7 @@ function BoardForm({onSubmitt,onChange,newBoard}) {
       >
         <h1 className="text-center py-5 font-bold">Board Creation</h1>
         <input
-          className="border-4 border-black placeholder:italic pl-2
+          className="w-52 md:w-64 border-4 border-black placeholder:italic pl-2
           placeholder:pl-1"
           value={newBoard.title}
           type="text"
