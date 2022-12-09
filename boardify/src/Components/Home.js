@@ -3,10 +3,10 @@ import BoardForm from "./BoardForm";
 import ToggleButton from "./ToggleButton";
 import BoardContainer from "./BoardContainer";
 import { collection, addDoc, onSnapshot,deleteDoc, doc  } from "firebase/firestore";
-import  db  from "../backend/firebase-config";
+import  db  from "../backend/firebase-config.js";
 
 function Home() {
-  const [board, setBoard] = React.useState([]);
+  const [boards, setBoards] = React.useState([]);
   const [newBoard, setNewBoard] = React.useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function Home() {
     onSnapshot(collection(db, "boards"), (snapshot) => {
       snapshot.docChanges().forEach((docChange) => {
         if (docChange.type === "added") {
-          setBoard((prevBoardList) => [...prevBoardList, docChange.doc.data()]);
+          setBoards((prevBoardsList) => [...prevBoardsList, docChange.doc.data()]);
         }
       });
     });
@@ -51,7 +51,7 @@ function Home() {
         newBoard={newBoard}
       />
       <ToggleButton />
-      <BoardContainer board={board} onDelete={handleDeleteBoard} />
+      <BoardContainer boards={boards} onDelete={handleDeleteBoard} />
     </div>
   );
 }

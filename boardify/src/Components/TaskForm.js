@@ -3,11 +3,12 @@ import React, { useState } from "react";
 function TaskForm() {
     const [ showForm, setShowForm ] = useState(false);
     const handleSubmit = (e) => e.preventDefault();
+    
 
     return(
       <>
       {showForm ?
-        (<form onSubmit={handleSubmit} className="bg-white p-5 rounded-lg my-4">
+        (<form onSubmit={handleSubmit} className={"  bg-white p-5 rounded-lg my-4"}>
         <div>
           <label className="font-bold">Title</label>
           <input className="border-2 w-32 md:w-40 border-black placeholder:italic pl-2
