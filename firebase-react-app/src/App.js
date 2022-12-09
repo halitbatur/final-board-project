@@ -1,14 +1,14 @@
 import React from "react";
 import {Routes,Route,Link} from "react-router-dom";
-import home from "./Home"
-import project from "./InProject"
+import Home from "./Home"
+import InProject from "./InProject"
 
 function App(){
 
 return ( <div>
 <Routes>
 <Route path="/home" element={<Home />}/>
-<Route path="/project" element={<InProject />}/>
+<Route path="/Inproject" element={<InProject />}/>
 </Routes>
 </div>
 )}
