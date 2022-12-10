@@ -19,7 +19,7 @@ function Home() {
         if (docChange.type === "added") {
           const boardId = docChange.doc.id ; 
           const boardObj = {...docChange.doc.data() , boardId};
-       
+
           setBoards((prevBoardsList) => [...prevBoardsList, boardObj]);
         }
       });
