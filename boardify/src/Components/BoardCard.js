@@ -19,6 +19,7 @@ function BoardCard({ board, onDelete}) {
     isCompleted: false,
     taskId: 0,
   });
+   
 
   const handleTaskChange = (e) => {
     console.log({ [e.target.name]: e.target.value});
@@ -45,8 +46,10 @@ function BoardCard({ board, onDelete}) {
       const boards = collection(db, "boards");
        const boardRef = doc(boards, board.boardId);
       
-       console.log(boardRef);
+    
       // const tasks = collection(boardRef, "tasks");
+    
+
       // const taskRef = doc(tasks, task.taskId);
       // await setDoc(taskRef, {
       //   title: task.title,
@@ -76,7 +79,7 @@ function BoardCard({ board, onDelete}) {
     });
   };
   
-  console.log(tasks);
+
 
   return (
     <div className="px-8 my-10 bg-red-800 md:mx-3 border-2 rounded-xl
