@@ -7,7 +7,10 @@ import  db  from "../backend/firebase-config.js";
 
 function Home() {
   const [boards, setBoards] = React.useState([]);
-  const [newBoard, setNewBoard] = React.useState([]);
+  const [newBoard, setNewBoard] = React.useState({
+    title: "",
+    tasks: [],
+  });
 
   useEffect(() => {
 
@@ -16,7 +19,7 @@ function Home() {
         if (docChange.type === "added") {
           const boardId = docChange.doc.id ; 
           const boardObj = {...docChange.doc.data() , boardId};
-          console.log(boardObj);
+       
           setBoards((prevBoardsList) => [...prevBoardsList, boardObj]);
         }
       });
@@ -26,12 +29,14 @@ function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   
+
     addDoc(collection(db, "boards"), {
       ...newBoard,
     });
+
     setNewBoard({
       title: "",
+      tasks: [],
     });
   };
 
