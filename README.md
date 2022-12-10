@@ -74,7 +74,7 @@ Two minute demo of:
 - Creation and reading of a board in Firebase
 - Creation and reading of a board item in Firebase
 - Working navbar with React Routing
-- Editing and Existing Board item in Firebase
+- Editing an Existing Board item in Firebase
 
 The user should be able to fill out forms to create a board and board item and
 have it show up in the UI, no matter how it looks. No styling is required (I
