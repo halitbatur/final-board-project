@@ -1,10 +1,15 @@
 import React from "react";
 import {Routes,Route,Link} from "react-router-dom";
-import Home from "./Home"
-import InProject from "./InProject"
+import Home from "./components/Home"
+import InProject from "./components/InProject.js"
+import { collection, addDoc, onSnapShot } from "firebase/firestore";
+import db from "../firebase";
 
 function App(){
-
+useEffect(()=>{
+    const snapshot = onSnapShot(collection(db, "users"))
+    console.log(snapshot);
+})
 return ( <div>
 <Routes>
 <Route path="/home" element={<Home />}/>
