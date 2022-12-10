@@ -1,9 +1,10 @@
 import React from "react";
 import {Routes,Route,Link} from "react-router-dom";
-import Home from "./components/Home"
-import InProject from "./components/InProject.js"
+import Home from "./Home"
+import InProject from "./InProject.js"
 import { collection, addDoc, onSnapShot } from "firebase/firestore";
 import db from "../firebase";
+import "../styles/App.css";
 
 function App(){
 useEffect(()=>{
