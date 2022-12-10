@@ -36,7 +36,7 @@ const Header = () => {
         </h1>
         <p className='text-gray-500 font-medium mt-2 tracking-tight'>
         This is the committed plan for the team.
-        <a href="#" className='text-md text-sky-600 ml-2.5'>See More</a></p>
+        <a href="google.com" className='text-md text-sky-600 ml-2.5'>See More</a></p>
       </div>
       <div className="header__description__right flex items-center -mt-2 gap-5">
         <div className="header__activity flex items-center gap-2">
