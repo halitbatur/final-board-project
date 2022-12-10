@@ -19,8 +19,7 @@ are:
 
 ## Code Requirements
 
-- Only use function components (they were not taught on learn.co but they are
-  what are used normally in practice). They are very similar to normal classes
+- Only use function components
 - You will want to look into how **hooks** are used
 
 ## Data Requirements
