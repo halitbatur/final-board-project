@@ -4,6 +4,17 @@ import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import db from "../../utils/firebase";
 import { useEffect } from "react";
+
+import { async } from "@firebase/util";
+
+export default function Home() {
+  async function getDocHandler() {
+    const docRef = doc(db, "boards", "iUa0ccbWrwNQ13fLt6oh");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data().boards);
+
 // import { async } from "@firebase/util";
 import Board from "./Board";
 
@@ -16,6 +27,7 @@ export default function Home() {
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
       setBoards(docSnap.data());
+
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
