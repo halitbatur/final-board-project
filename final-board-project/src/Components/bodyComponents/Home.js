@@ -12,7 +12,7 @@ export default function Home() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      console.log("Document data:", docSnap.data().boards);
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
