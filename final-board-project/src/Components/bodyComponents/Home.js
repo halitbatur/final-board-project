@@ -2,27 +2,26 @@ import React from "react";
 import BoardForm from "../forms/BoardForm";
 import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import db from "../../utils/firebase"
+import db from "../../utils/firebase";
 import { useEffect } from "react";
 import { async } from "@firebase/util";
 
-
 export default function Home() {
-  async function getDocHandler(){
-    const docRef = doc(db, "fianl-board-project", "5td3MGt6cZph0QdMgLuS");
-  const docSnap = await getDoc(docRef);
-  
-  if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-  } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
+  async function getDocHandler() {
+    const docRef = doc(db, "boards", "iUa0ccbWrwNQ13fLt6oh");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
   }
-  }
-useEffect(()=> {
-  getDocHandler()
-})
-const [boardClick, setBoardClick] = useState(false);
+  useEffect(() => {
+    getDocHandler();
+  });
+  const [boardClick, setBoardClick] = useState(false);
   return (
     <div className=" flex items-center justify-center flex-col relative bg-gray-50 ">
       <button
