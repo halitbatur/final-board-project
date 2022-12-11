@@ -6,7 +6,7 @@ import db from "../../utils/firebase";
 import { useEffect } from "react";
 import Board from "./Board";
 
-import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
 
 // import { async } from "@firebase/util";
 
@@ -23,7 +23,7 @@ export default function Home() {
   }
   useEffect(() => {
     getDocHandler();
-  });
+  }, []);
   const [boardClick, setBoardClick] = useState(false);
   return (
     <div className=" flex items-center justify-center flex-col relative bg-gray-50 gap-10">

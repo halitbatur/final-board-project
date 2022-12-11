@@ -1,35 +1,34 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import {firebase} from "../../utils/firebase"
+import { useEffect } from "react";
+// import {firebase} from "../../utils/firebase"
 import { doc, setDoc } from "firebase/firestore";
-import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
 import db from "../../utils/firebase";
 
 export default function BoardForm(props) {
-  async function addingNotes(){
-
-    await setDoc(doc(db, "fianl-board-project","bbbbb"), {
+  async function addingNotes() {
+    await setDoc(doc(db, "fianl-board-project", "bbbbb"), {
       name: "Los Angeles",
       state: "CA",
-      country: "USA"
+      country: "USA",
     });
   }
-  useEffect(()=>{
-    addingNotes()
-  },[])
+  useEffect(() => {
+    addingNotes();
+  }, []);
 
   // const [boards, setBoards] = useState([]);
   // const [loading, setLoading] = useState(false);
 
   // const ref = firebase.firestore().collection("fianl-board-project")
- 
+
   // useEffect(()=>{
 
   // },[])
   // if(loading){
   //   return <h1>Loading...</h1>
   // }
-  
+
   return props.trigger ? (
     <div className="w-full max-w-xs absolute top-1/2 translate-y-1/2 z-10 backdrop-blur-3xl">
       <form className="bg-white shadow-md rounded px-8 pt-20 pb-8 mb-4 relative">
