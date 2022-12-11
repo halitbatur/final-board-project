@@ -21,7 +21,7 @@ function BoardForm({onSubmitt,onChange,newBoard}) {
         />
         <input
           className="px-3 py-1 bg-black text-white hover:bg-red-800
-          hover:cursor-pointer hover:font-bold"
+          hover:cursor-pointer"
           type="submit"
           value="Submit"
         />

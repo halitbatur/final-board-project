@@ -61,33 +61,27 @@ function BoardCard({ board, onDelete}) {
   // });
 
   return (
-    <div className="px-8 my-10 bg-red-800 md:mx-3 border-2 rounded-xl
+    <div className="px-8 mt-10 lg:mb-10 bg-red-800 md:mx-3 border-2 rounded-xl
       border-black mx-auto justify-center align-center w-56 md:w-72">
+      
       <button
         className="border-2 border-black w-[50px] float-right bg-black text-white font-bold mt-4"
-        onClick={() => onDelete(board.boardId)}
-      >
-        X
+        onClick={() => onDelete(board.boardId)}>X
       </button>
+
       <h1 className="text-2xl font-bold text-white justify-center mx-auto py-3">{board.title}</h1>
-      < TaskForm task={newTask} handleTaskChange={handleTaskChange} handleTaskSubmit={ handleTaskSubmit } />
     
       <div className="flex flex-col gap-2">
-        {
-        tasks.map((task , index) => {
-          return (
-            < TaskCard key={index} task = {
-              task
-            }
-            />
-          )
-        })
-        }
+         {tasks.map((task , index) => {
+           return ( <TaskCard key={index} task = { task } /> )
+         })}
       </div>
 
-      <div className="flex justify-between">
-        <h6>{tasks.length > 0 ? tasks.length : '0'} Tasks</h6>
-      </div>
+      < TaskForm task={newTask} handleTaskChange={handleTaskChange} handleTaskSubmit={ handleTaskSubmit } />
+
+      <h6 className="text-2xl font-bold text-white justify-center mx-auto pb-3 pt-1">
+        {tasks.length > 0 && tasks.length ===1 ? `${tasks.length} Task`: `${tasks.length} Tasks`}
+      </h6>
     </div>
   );
 }
