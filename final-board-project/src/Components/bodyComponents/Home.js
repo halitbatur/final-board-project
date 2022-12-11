@@ -4,33 +4,21 @@ import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import db from "../../utils/firebase";
 import { useEffect } from "react";
+import Board from "./Board";
 
 import { async } from "@firebase/util";
 
+// import { async } from "@firebase/util";
+
 export default function Home() {
+  const [boards, setBoards] = useState(null);
   async function getDocHandler() {
     const docRef = doc(db, "boards", "iUa0ccbWrwNQ13fLt6oh");
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data().boards);
-
-// import { async } from "@firebase/util";
-import Board from "./Board";
-
-export default function Home() {
-  const [boards, setBoards] = useState(null);
-  async function getDocHandler() {
-    const docRef = doc(db, "fianl-board-project", "5td3MGt6cZph0QdMgLuS");
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-      setBoards(docSnap.data());
-
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
+      setBoards(docSnap.data().boards);
     }
   }
   useEffect(() => {
