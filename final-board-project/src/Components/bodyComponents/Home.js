@@ -5,10 +5,8 @@ import { doc, getDoc } from "firebase/firestore";
 import db from "../../utils/firebase";
 import { useEffect } from "react";
 import Board from "./Board";
-
-// import { async } from "@firebase/util";
-
-// import { async } from "@firebase/util";
+import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
 
 export default function Home() {
   const [boards, setBoards] = useState(null);
@@ -35,10 +33,19 @@ export default function Home() {
       </button>
       <BoardForm trigger={boardClick} setTrigger={setBoardClick} />
       <div className="flex gap-16 ">
-        {boards &&
+        {boards ? (
           boards.map((ele) => {
-            return <Board props={ele} key={ele.id} />;
-          })}
+            return (
+              <Link to={`/tasks/${ele.id}`} className="h-48 w-48" key={ele.id}>
+                <Board props={ele} />
+              </Link>
+            );
+          })
+        ) : (
+          <div className="relative mt-24">
+            <Spinner />
+          </div>
+        )}
       </div>
     </div>
   );
