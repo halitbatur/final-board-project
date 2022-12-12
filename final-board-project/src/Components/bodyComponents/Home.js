@@ -7,20 +7,20 @@ import { useEffect } from "react";
 import Board from "./Board";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  queryEqual,
+  QuerySnapshot,
+} from "firebase/firestore";
+import { query, where, onSnapshot, doc } from "firebase/firestore";
+import { async } from "@firebase/util";
+
 // import { async } from "@firebase/util";
 
 export default function Home() {
   const [boards, setBoards] = useState(null);
-  // async function getDocHandler() {
-  //   const docRef = doc(db, "boards", "iUa0ccbWrwNQ13fLt6oh");
-  //   const docSnap = await getDoc(docRef);
 
-  //   if (docSnap.exists()) {
-  //     console.log("Document data:", docSnap.data().boards);
-  //     setBoards(docSnap.data().boards);
-  //   }
-  // }
   async function getData() {
     const boardsCollection = collection(db, "boards");
     getDocs(boardsCollection).then((res) => {
@@ -30,14 +30,28 @@ export default function Home() {
       }));
       setBoards(result);
     });
+    // const q = query(collection(db, "boards"));
+    // const unsubscribe = onSnapshot(collection(db, "boards"), async (doc) => {
+    //   // console.log(
+    //   //   doc._snapshot.docChanges[0].doc.data.value.mapValue.fields.name
+    //   //     .stringValue
+    //   // );
+    //   const result = doc._snapshot.docChanges.map((ele) => {
+    //     return ele.doc.data.value.mapValue.fields.name.stringValue;
+    //   });
+    //   // console.log(result);
+    //   return result;
+    // });
+    // setBoards(unsubscribe);
   }
   useEffect(() => {
-    // getDocHandler();
     getData();
   }, []);
+
   useEffect(() => {
     console.log(boards);
   }, [boards]);
+
   const [boardClick, setBoardClick] = useState(false);
   return (
     <div className="relative flex flex-col items-center justify-center gap-10 bg-gray-50">
