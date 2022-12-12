@@ -5,10 +5,8 @@ import { doc, getDoc } from "firebase/firestore";
 import db from "../../utils/firebase";
 import { useEffect } from "react";
 import Board from "./Board";
-
-// import { async } from "@firebase/util";
-
-// import { async } from "@firebase/util";
+import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
 
 export default function Home() {
   const [boards, setBoards] = useState(null);
@@ -27,6 +25,7 @@ export default function Home() {
   const [boardClick, setBoardClick] = useState(false);
   return (
     <div className="relative flex flex-col items-center justify-center gap-10 bg-gray-50">
+
       <button
         type="button"
         onClick={() => getDocHandler()}
@@ -35,7 +34,21 @@ export default function Home() {
         Create new Workspace
       </button>
       <BoardForm trigger={boardClick} setTrigger={setBoardClick} />
-      {boards && <Board props={boards} />}
+      <div className="flex gap-16 ">
+        {boards ? (
+          boards.map((ele) => {
+            return (
+              <Link to={`/tasks/${ele.id}`} className="h-48 w-48" key={ele.id}>
+                <Board props={ele} />
+              </Link>
+            );
+          })
+        ) : (
+          <div className="relative mt-24">
+            <Spinner />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
