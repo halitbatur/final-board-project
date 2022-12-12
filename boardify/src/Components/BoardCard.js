@@ -6,20 +6,32 @@ import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 function BoardCard({ board, onDelete }) {
-
-  const [tasks, setTasks] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
+  const [tasks, setTasks] = useState([]);
+  // const [sorted,setSorted]=useState([...tasks])
   const [newTask, setNewTask] = useState({
-    title: '',
-    description: '',
+    title: "",
+    description: "",
     boardId: board.boardId,
-    dueDate: '',
-    assignee: '',
+    dueDate: "",
+    assignee: "",
     isCompleted: false,
     taskId: uuidv4(),
   });
 
+  const handleSortingListChange = (e) => {
+    if (e.target.value === "due_date") {
+      let sorted = tasks.sort((a, b) => (a.dueDate > b.dueDate ? 1 : -1));
+      setTasks([...sorted]);
+    } else if (e.target.value === "asc") {
+      let sorted = tasks.sort((a, b) => (a.title > b.title ? 1 : -1));
+      setTasks([...sorted]);
+    } else if (e.target.value === "desc") {
+      let sorted = tasks.sort((a, b) => (a.title < b.title ? 1 : -1));
+      setTasks([...sorted])
+    }
+  };
   const handleTaskChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
@@ -35,13 +47,13 @@ function BoardCard({ board, onDelete }) {
         }
       });
       await updateDoc(boardsRef, {
-        tasks: updatedTasks
+        tasks: updatedTasks,
       });
       setShowForm(false);
       setIsUpdate(false);
     } else {
       await updateDoc(boardsRef, {
-        tasks: [...tasks, task]
+        tasks: [...tasks, task],
       });
       setShowForm(false);
     }
@@ -64,11 +76,11 @@ function BoardCard({ board, onDelete }) {
     createTask(newTask);
     setTasks([...tasks, newTask]);
     setNewTask({
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       boardId: board.boardId,
-      dueDate: '',
-      assignedTo: '',
+      dueDate: "",
+      assignedTo: "",
       isCompleted: false,
       taskId: uuidv4(),
     });
@@ -78,29 +90,42 @@ function BoardCard({ board, onDelete }) {
     const boardsRef = doc(db, "boards", board.boardId);
     const updatedTasks = tasks.filter((task) => task.taskId !== taskId);
     await updateDoc(boardsRef, {
-      tasks: updatedTasks
+      tasks: updatedTasks,
     });
   };
-
+  console.log(tasks);
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "boards"), (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (doc.id === board.boardId) {
-          setTasks(doc.data().tasks);
-        }
-      });
-    });
+    const unsubscribe = onSnapshot(
+      collection(db, "boards"),
+      (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (doc.id === board.boardId) {
+            setTasks(doc.data().tasks);
+          }
+        });
+      }
+    );
     return unsubscribe;
   }, [board.boardId]);
 
   return (
-    <div className="px-8 mt-10 lg:mb-10 bg-red-800 md:mx-3 border-2 rounded-xl
-      border-black mx-auto justify-center align-center w-56 md:w-72">
-
-      <button className="border-2 border-black w-[50px] float-right bg-black
+    <div
+      className="px-8 mt-10 lg:mb-10 bg-red-800 md:mx-3 border-2 rounded-xl
+      border-black mx-auto justify-center align-center w-56 md:w-72"
+    >
+      <button
+        className="border-2 border-black w-[50px] float-right bg-black
         text-white font-bold mt-4"
-        onClick={() => onDelete(board.boardId)}>X
+        onClick={() => onDelete(board.boardId)}
+      >
+        X
       </button>
+
+      <select onChange={handleSortingListChange}>
+        <option value="due_date">due Date</option>
+        <option value="asc">asc</option>
+        <option value="desc">desc</option>
+      </select>
 
       <h1 className="text-2xl font-bold text-white justify-center mx-auto py-3">
         {board.title}
@@ -135,14 +160,12 @@ function BoardCard({ board, onDelete }) {
       />
 
       <h6 className="text-2xl font-bold text-white justify-center mx-auto pb-3 pt-1">
-        {
-          tasks.length > 0 && tasks.length === 1 ?
-          `${tasks.length} Task` : `${tasks.length} Tasks`
-        }
+        {tasks.length > 0 && tasks.length === 1
+          ? `${tasks.length} Task`
+          : `${tasks.length} Tasks`}
       </h6>
     </div>
   );
 }
 
 export default BoardCard;
-
