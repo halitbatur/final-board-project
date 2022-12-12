@@ -9,6 +9,7 @@ const TaskCard = ({
   isUpdate,
   setIsUpdate}) => {
 
+    // console.log(task.sort())
   const handleDelete = () => {
     deleteTask(task.taskId);
   };
