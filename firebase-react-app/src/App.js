@@ -1,12 +1,7 @@
 import React from "react";
 import {Routes,Route,Link} from "react-router-dom";
-import Home from "./Home"
-import List from "./List"
-import NavBar from "./NavBar"
-import { collection, addDoc, onSnapShot } from "firebase/firestore";
-import db from "../firebase";
-import "../styles/App.css";
-import Card from "./Card";
+import List from "./Components/List"
+import "./styles/App.css";
 import { connect } from "react-redux"
 
 function App(props){

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { collection, addDoc, onSnapShot } from "firebase/firestore";
 import db from "../firebase";
@@ -7,7 +8,7 @@ function Project() {
 
     const handleSubmit = async (event) => {
         event.preventDefualt();
-        await addDoc(collection(db, "users"), {
+        await addDoc(collection(db, "project"), {
             ...newProject
           });
           setNewProject({
