@@ -1,15 +1,21 @@
-import React from "react"
-import { Paper, Typography } from "@material-ui/core";
+import React, { useState } from "react"
+import Card from "./Card"
 
-function List () {
+function List ({title, cards}) {
+    const cardsArray = cards?.map((card) => {
+     <Card task={card.task} />
+    })
+
     return (
+        <form>
         <div>
-            <Paper>
-                <Typography>
-                    Create Project
-                </Typography>
-            </Paper>
+            <div className="font-bold ml-1 p-2 w-72">
+                <h4>{title}</h4>
+                {cardsArray}
+            </div>
         </div>
+        
+        </form>
     )
 }
 
