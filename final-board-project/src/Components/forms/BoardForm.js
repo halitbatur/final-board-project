@@ -9,23 +9,24 @@ export default function BoardForm(props) {
   async function addingNotes(title) {
     await addDoc(collection(db, "boards"), {
       name: title,
-      state: "CA",
-      country: "USA",
+      tasks: [],
     });
   }
 
-  const [title, setTitle] = useState('')
-
+  const [title, setTitle] = useState("");
 
   const saveDoc = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    addingNotes(title)
-  }
-  
+    addingNotes(title);
+  };
+
   return props.trigger ? (
-    <div className="absolute z-10 w-full max-w-xs translate-y-1/2 top-1/2 backdrop-blur-3xl">
-      <form className="relative px-8 pt-20 pb-8 mb-4 bg-white rounded shadow-md" onSubmit={saveDoc}>
+    <div className="absolute z-10 w-full max-w-xs translate-y-5/2 backdrop-blur-3xl">
+      <form
+        className="relative px-8 pt-20 pb-8 mb-4 bg-white rounded shadow-md"
+        onSubmit={saveDoc}
+      >
         <button
           onClick={() => props.setTrigger(false)}
           type="button"
