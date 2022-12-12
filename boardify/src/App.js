@@ -9,7 +9,7 @@ function App() {
         className="flex justify-center items-center text-lg md:text-2xl
       space-x-10 md:space-x-20 bg-black text-white h-16"
       >
-        <Link className="hover:text-red-800" to="/home">
+        <Link className="hover:text-red-800" to="/">
           Home
         </Link>
         <Link className="hover:text-red-800" to="/about">
@@ -18,7 +18,7 @@ function App() {
       </header>
       
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </div>
