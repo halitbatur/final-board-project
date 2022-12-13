@@ -9,23 +9,23 @@ function BoardTitle(props){
     }
   } 
 
-  function BoardField(props){
-    if (props.field === '' || props.field === undefined) {
+  function BoardText(props){
+    if (props.text === '' || props.text === undefined) {
       return null
     }else {
-      return  <p className="bg-blue-500">{props.field}</p>
+      return  <p className="bg-blue-500">{props.text}</p>
     }
   } 
 
-  function BoardAssignie(props){
-    if (props.assignie === '' || props.assignie === undefined) {
+  function BoardSupervisor(props){
+    if (props.supervisor === '' || props.supervisor === undefined) {
       return null
     }else {
-      return  <p className="bg-gray-800 font-light">{props.assignie}</p>
+      return  <p className="bg-gray-800 font-light">{props.supervisor}</p>
     }
   } 
 
-  function BoardAddedDate(props){
+  function BoardDate(props){
     if (props.date === '' || props.date === undefined) {
       return null
     }else {
@@ -34,14 +34,14 @@ function BoardTitle(props){
   } 
 
 
-function BoardCard() {
+function BoardCard(props) {
   return (
     <div className="bg-cyan-500 w-1/4 rounded-2xl">
-        <BoardTitle title = "Pizza"/>
-        <BoardField field = "A pizza a day, keeps sadness away"/>
+        <BoardTitle title = {props.title}/>
+        <BoardText text = {props.text}/>
         <div className="flex ">
-        <BoardAssignie assignie = "'Amin'"/>
-        <BoardAddedDate date = "7/12/2022"/>
+        <BoardSupervisor supervisor = {props.supervisor}/>
+        <BoardDate date = {props.date}/>
         </div>
 
     </div>
