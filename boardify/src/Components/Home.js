@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import BoardForm from "./BoardForm";
-//import ToggleButton from "./ToggleButton";
 import Switch from "./Switch";
-//import ListContainer from "./ListContainer";
+import ListContainer from "./ListContainer";
 import BoardContainer from "./BoardContainer";
 import { collection, addDoc, onSnapshot,deleteDoc, doc  } from "firebase/firestore";
 import  db  from "../backend/firebase-config.js";
@@ -23,7 +22,6 @@ function Home() {
         if (docChange.type === "added") {
           const boardId = docChange.doc.id ; 
           const boardObj = {...docChange.doc.data() , boardId};
-
           setBoards((prevBoardsList) => [...prevBoardsList, boardObj]);
         }
       });
@@ -53,12 +51,9 @@ function Home() {
   };
 
   const handleDeleteBoard = async (id) => {
-
     await deleteDoc(doc(db, "boards", id));
-
     const newBoards = boards.filter((board)=> board.boardId !== id);
     setBoards(newBoards);
-
   };
 
   return (
@@ -69,16 +64,13 @@ function Home() {
         newBoard={newBoard}
       />
 
-      <div className="flex ml-20 mt-5 px-3 py-1 font-bold">
+      <div className="flex ml-10 md:ml-20 mt-5 px-3 py-1 font-bold">
         <h1 className="mr-2 text-2xl"> Board</h1>
         <Switch isOn={value} onColor="black" handleToggle={() => setValue( () => !value)}/>
         <h1 className="ml-2 text-2xl"> List</h1>
       </div>
-      
-      {/* { value ? <ListContainer /> : <BoardContainer boards={boards} onDelete={handleDeleteBoard} /> } */}
-      {/* <ToggleButton /> */}
-      <BoardContainer boards={boards} onDelete={handleDeleteBoard} />
-      
+    
+      { value ? <ListContainer boards={boards}/> : <BoardContainer boards={boards} onDelete={handleDeleteBoard} /> }
     </div>
   );
 }
