@@ -6,6 +6,7 @@ import Board from "./Board";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
 import { collection, onSnapshot } from "firebase/firestore";
+import BoardEditAndDeleteButton from "./BoardEditAndDeleteButton"
 
 export default function Home() {
   const [boards, setBoards] = useState(null);
@@ -28,13 +29,16 @@ export default function Home() {
         Create new Workspace
       </button>
       <BoardForm trigger={boardClick} setTrigger={setBoardClick} />
-      <div className="flex gap-16 flex-wrap items-center justify-center mt-10">
+      <div className="flex flex-wrap items-center justify-center gap-16 mt-10">
         {boards ? (
           boards.map((ele) => {
             return (
-              <Link to={`/tasks/${ele.id}`} className="h-48 w-48" key={ele.id}>
+              <div>
+              <Link to={`/tasks/${ele.id}`} className="w-48 h-48" key={ele.id}>
                 <Board props={ele} />
               </Link>
+              <BoardEditAndDeleteButton/>
+              </div>
             );
           })
         ) : (

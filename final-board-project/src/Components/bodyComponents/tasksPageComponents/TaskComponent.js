@@ -14,11 +14,14 @@ export default function TaskComponent() {
 
   const [boardsTasks, setBoardsTasks] = useState(null);
   async function getDocHandler() {
-    const docRef = doc(db, "boards", `${id}`);
+    console.log('')
+    //const docRef = doc(db, "boards", `${id}/Tasks`, );
+    const docRef = db.collection('boards').doc(`${id}`).collection('Tasks')
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       setBoardsTasks(docSnap.data());
+      console.log("tasks", docSnap.data())
     }
   }
   useEffect(() => {
@@ -28,9 +31,9 @@ export default function TaskComponent() {
     console.log(boardsTasks);
   }, [boardsTasks]);
   return boardsTasks ? (
-    <div className="h-screen bg-red-300 flex justify-center items-center flex-col gap-32">
+    <div className="flex flex-col items-center justify-center h-screen gap-32 bg-red-300">
       <h3 className="text-3xl font-bold capitalize">{boardsTasks.name}</h3>
-      <div className="h-3/4 bg-blue-400 flex items-center justify-center">
+      <div className="flex items-center justify-center bg-blue-400 h-3/4">
         <h4 className="text-6xl font-bold ">Tasks should be here !!!!!!!</h4>
         <button
           type="button"
