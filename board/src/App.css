@@ -1,4 +1,4 @@
-.custom-scroll::-webkit-scrollbar {
+/* .custom-scroll::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -10,24 +10,31 @@
 
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   border: 1px solid gray;
-}
+} */
 
 .app {
   width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding: 5px;
 }
 
 .app_nav {
-  padding: 30px;
-  box-shadow: 0 1px 20px rgba(56, 40, 40, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
   background-color: #fff;
+  /* display: flex;
+  flex-direction: row; */
 }
 
+.icon_app {
+  width: 20%;
+  float: left;
+  text-decoration: none;
+  color: black;
+}
+
+.icon_size {
+  font-size: 22px;
+}
+
+/* 
 .app_boards_container {
   flex: 1;
   width: 100%;
@@ -57,8 +64,9 @@
   width: 100%;
   text-align: center;
 }
+
 .app_boards_add-board_edit {
   background-color: #fff;
   border-radius: 10px;
   padding: 10px;
-}
+} */
