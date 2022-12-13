@@ -12,10 +12,10 @@ const Form = () => {
             Title
           </label>
           <input
-            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             id="grid-first-name"
             type="text"
-            placeholder="Jane"
+            placeholder="title"
           />
           {/* <p class="text-red-500 text-xs italic">Please fill out this field.</p> */}
         </div>
@@ -37,7 +37,7 @@ const Form = () => {
           ></textarea>
         </div>
       </div>
-      <button>submit</button>
+      <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">submit</button>
     </form>
   );
 };
