@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
+
     <div className="sidebar w-56 bg-gray-100">
+
+    <div className="bg-gray-100 w-64 h-screen fixed top-0 left-0">
+
       <aside className="grid justify-center">
         <div className=" text-3xl p-5 font-bold">Work Space</div>
         <div className="w-10 m-3">
