@@ -4,17 +4,19 @@ import Board from "./Components/Board/Board";
 
 import "./App.css";
 import Editable from "./Components/Editabled/Editable";
-import { collection, addDoc, getDoc, onSnapshot } from "firebase/firestore";
-import { doc, updateDoc, deleteField, serverTimestamp } from "firebase/firestore";
+import { doc, collection, addDoc, onSnapshot, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { query, where, getDocs } from "firebase/firestore";
 import db from "../src/firebase";
 import { v4 } from 'uuid';
 
 function App() {
-  const [boards, setBoards] = useState(
-    JSON.parse(localStorage.getItem("prac-kanban")) || []
-  );
+  // const [boards, setBoards] = useState(
+  //   JSON.parse(localStorage.getItem("prac-kanban")) || []
+  // );
+  const [boards, setBoards] = useState([]);
+  const [cards, setCards] = useState([]);
 
+  // console.log(boards);
   const [targetCard, setTargetCard] = useState({
     bid: "",
     cid: "",
@@ -24,29 +26,49 @@ function App() {
     collection(db, "boards")
   );
 
-  const [boards1, setBoards1] = useState([]);
   useEffect(() => {
-
     onSnapshot(collection(db, "boards"), (snapshot) => {
       snapshot.docChanges().forEach((docChange) => {
         if (docChange.type === "added") {
-          setBoards1((prevBoardsList) => [...prevBoardsList, docChange.doc.data()]);
-          // console.log(docChange.doc.data());
+          const boardId = docChange.doc.id;
+          const boardObj = { ...docChange.doc.data(), boardId };
+          setBoards((prevBoardsList) => [...prevBoardsList, boardObj]);
         }
-      });
+      }
+      );
+      // console.log(boards);
+
     });
 
   }, []);
 
+  useEffect(() => {
+    onSnapshot(collection(db, "cards"), (snapshot) => {
+      snapshot.docChanges().forEach((docChange) => {
+        if (docChange.type === "added") {
+          const cardId = docChange.doc.id;
+          const cardObj = { ...docChange.doc.data(), cardId };
+          setCards((prevCardsList) => [...prevCardsList, cardObj]);
+        }
+      }
+      );
+      // console.log(cards);
+
+    });
+
+  }, []);
+
+
+
   const addboardHandler = (name) => {
     // const addboardHandler = async (name) => {
-    const tempBoards = [...boards];
-    tempBoards.push({
-      id: Date.now() + Math.random() * 2,
-      title: name,
-      cards: [],
-    });
-    setBoards(tempBoards);
+    // const tempBoards = [...boards];
+    // tempBoards.push({
+    //   id: Date.now() + Math.random() * 2,
+    //   title: name,
+    //   cards: [],
+    // });
+    // setBoards(tempBoards);
 
     //  let boardID = v4();
     addDoc(collection(db, "boards"), {
@@ -56,49 +78,56 @@ function App() {
 
   }
 
-  const removeBoard = (id) => {
-    const index = boards.findIndex((item) => item.id === id);
-    if (index < 0) return;
 
-    const tempBoards = [...boards];
-    tempBoards.splice(index, 1);
-    setBoards(tempBoards);
+  const removeBoard = async (id) => {
+    await deleteDoc(doc(db, "boards", id));
+    const newBoards = boards.filter((board) => board.boardId !== id);
+    setBoards(newBoards);
+
+    // const index = boards.findIndex((item) => item.id === id);
+    // if (index < 0) return;
+
+    // const tempBoards = [...boards];
+    // tempBoards.splice(index, 1);
+    // setBoards(tempBoards);
     //   updateDoc(cityRef, {
     //     capital: deleteField()
     // });
   };
 
   const addCardHandler = (id, title) => {
-    const index = boards.findIndex((item) => item.id === id);
-    if (index < 0) return;
+    // const index = boards.findIndex((item) => item.id === id);
+    // if (index < 0) return;
 
-    const tempBoards = [...boards];
-    tempBoards[index].cards.push({
-      id: Date.now() + Math.random() * 2,
-      title,
-      labels: [],
-      date: "",
-      tasks: [],
-    });
-    setBoards(tempBoards);
+    // const tempBoards = [...boards];
+    // tempBoards[index].cards.push({
+    //   id: Date.now() + Math.random() * 2,
+    //   title,
+    //   labels: [],
+    //   date: "",
+    //   tasks: [],
+    // });
+    // setBoards(tempBoards);
 
-    addDoc(collection(db, "tasks"), {
+    addDoc(collection(db, "cards"), {
       boardId: id,
       description: "newtask",
       dueDate: serverTimestamp(),
       status: "done",
       cardName: title
     });
-
-    async function getDocuments() {
-      const querySnapshot = await getDocs(collection(db, "tasks"));
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        // alert(doc.id);
-      });
+    const board = boards.find((board) => board.id = id);
+    if (!board["cards"]) {
+      board["cards"] = []
     }
-    getDocuments();
+    board["cards"].push({
+      boardId: id,
+      description: "newtask",
+      dueDate: serverTimestamp(),
+      status: "done",
+      cardName: title
+    })
+    setBoards(boards);
   };
 
 
@@ -172,7 +201,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("prac-kanban", JSON.stringify(boards));
   }, [boards]);
-
   return (
     <div className="app">
       <div className="app_nav">
@@ -180,9 +208,9 @@ function App() {
       </div>
       <div className="app_boards_container">
         <div className="app_boards">
-          {boards1.map((item) => (
+          {boards.map((item) => (
             <Board
-              key={item.boardId}
+              key={item.id}
               board={item}
               addCard={addCardHandler}
               removeBoard={() => removeBoard(item.boardId)}
