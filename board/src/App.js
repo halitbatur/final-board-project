@@ -4,12 +4,11 @@ import Board from "./Components/Board/Board";
 
 import "./App.css";
 import Editable from "./Components/Editabled/Editable";
-import { collection, addDoc, getDoc,increment} from "firebase/firestore"; 
-import { doc, updateDoc, deleteField, serverTimestamp} from "firebase/firestore";
-import {query, where, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, updateDoc, deleteField, serverTimestamp } from "firebase/firestore";
+import { query, where, getDocs } from "firebase/firestore";
 import db from "../src/firebase";
 import { v4 } from 'uuid';
-import { useCollection } from "react-firebase-hooks/firestore";
 
 function App() {
   const [boards, setBoards] = useState(
@@ -25,40 +24,20 @@ function App() {
     collection(db, "boards")
   );
 
-  const [books] = useCollection(queryIds);
+  const [boards1, setBoards1] = useState([]);
+  useEffect(() => {
 
-  console.log(books);
-  // books.docs.map((doc) =>{ console.log(doc.data())});
-
-
-
-
-
-
-
-
-
-
-
-  const [board2 , setboard2] = useState([]);
-
-  const boards1 = [];
-  async function getBoardIDs(){
-    const querySnapshot = await getDocs(collection(db, "boards")).get().then();
-    querySnapshot.forEach((doc) => {
-    // console.log( doc.data());
-      //  boards1.push(doc.data());
-      setboard2(arr => [...arr , doc.data()]);
+    onSnapshot(collection(db, "boards"), (snapshot) => {
+      snapshot.docChanges().forEach((docChange) => {
+        if (docChange.type === "added") {
+          setBoards1((prevBoardsList) => [...prevBoardsList, docChange.doc.data()]);
+          // console.log(docChange.doc.data());
+        }
       });
-      // return boards1;
-  }
-    getBoardIDs();
-    console.log(board2);
-  
-    // boards1.forEach((item) => {
-    // console.log(item.boardId);
-    // });
-  
+    });
+
+  }, []);
+
   const addboardHandler = (name) => {
     // const addboardHandler = async (name) => {
     const tempBoards = [...boards];
@@ -68,13 +47,14 @@ function App() {
       cards: [],
     });
     setBoards(tempBoards);
-    
-  //  let boardID = v4();
+
+    //  let boardID = v4();
     addDoc(collection(db, "boards"), {
-      boardId: v4() ,
-      boardName: name
-  }); 
-}
+      id: v4(),
+      title: name
+    });
+
+  }
 
   const removeBoard = (id) => {
     const index = boards.findIndex((item) => item.id === id);
@@ -83,9 +63,9 @@ function App() {
     const tempBoards = [...boards];
     tempBoards.splice(index, 1);
     setBoards(tempBoards);
-  //   updateDoc(cityRef, {
-  //     capital: deleteField()
-  // });
+    //   updateDoc(cityRef, {
+    //     capital: deleteField()
+    // });
   };
 
   const addCardHandler = (id, title) => {
@@ -102,24 +82,24 @@ function App() {
     });
     setBoards(tempBoards);
 
-   addDoc(collection(db, "tasks"), {
-      boardId : id,
+    addDoc(collection(db, "tasks"), {
+      boardId: id,
       description: "newtask",
       dueDate: serverTimestamp(),
       status: "done",
-      cardName : title
-  });
-
-  async function getDocuments(){
-  const querySnapshot = await getDocs(collection(db, "tasks"));
-  querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-  // alert(doc.id);
+      cardName: title
     });
-  }
-  getDocuments();
-};
+
+    async function getDocuments() {
+      const querySnapshot = await getDocs(collection(db, "tasks"));
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        // alert(doc.id);
+      });
+    }
+    getDocuments();
+  };
 
 
   const removeCard = (bid, cid) => {
