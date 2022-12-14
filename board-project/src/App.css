@@ -1,6 +1,18 @@
-.App {
-  text-align: center;
-}
+
+  .header { grid-area: header; }
+  .sidebar { grid-area: sidebar; }
+  .main-content-wrapper { 
+    grid-area: main;
+   }
+
+  .App {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    grid-template-columns: min-content 1fr;
+    grid-template-areas: "sidebar header" "sidebar main";
+  }
 
 .App-logo {
   height: 40vmin;

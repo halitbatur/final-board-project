@@ -26,7 +26,7 @@ import { ReactComponent as CommentHeartIcon } from "../../assets/icons/comment-h
 const Header = () => {
 
   return (
-    <div className='w-100 px-8 border-b border-gray-300'>
+    <div className='header px-8 border-b border-gray-300'>
       <div className="header__description flex justify-between">
       <div className="header__description__left pt-5">
         <h1 className="text-4xl font-medium flex items-center gap-4">
