@@ -6,7 +6,7 @@ import Board from "./Board";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
 import { collection, onSnapshot } from "firebase/firestore";
-import BoardEditAndDeleteButton from "./BoardEditAndDeleteButton"
+import EditButtonForm from "../forms/EditButtonForm";
 
 export default function Home() {
   const [boards, setBoards] = useState(null);
@@ -17,6 +17,8 @@ export default function Home() {
       ),
     []
   );
+
+  const [selectedBoardId, setSelectedBoardId] = useState(null)
 
   const [boardClick, setBoardClick] = useState(false);
   return (
@@ -37,7 +39,9 @@ export default function Home() {
               <Link to={`/tasks/${ele.id}`} className="w-48 h-48" key={ele.id}>
                 <Board props={ele} />
               </Link>
-              <BoardEditAndDeleteButton/>
+              <button className="flex justify-center w-full px-4 py-2 font-bold text-center text-white bg-indigo-500 border-indigo-700 rounded hover:bg-indigo-400 hover:border-indigo-500" onClick={()=>setSelectedBoardId(ele.id)}>Edit</button>
+              {selectedBoardId === ele.id && (<EditButtonForm taskId={ele.id} onClose={()=> setSelectedBoardId(null)}/>)}
+
               </div>
             );
           })

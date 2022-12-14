@@ -5,7 +5,7 @@ import About from "./Components/bodyComponents/About";
 import TaskComponent from "./Components/bodyComponents/tasksPageComponents/TaskComponent";
 function App() {
   return (
-    <div className="bg-gray-50 h-screen">
+    <div className="h-screen bg-gray-50">
       <Navbar />
       <Routes>
         <Route exact path="/home" element={<Home />} />
