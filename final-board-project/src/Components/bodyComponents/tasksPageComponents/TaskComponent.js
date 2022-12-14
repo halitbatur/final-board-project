@@ -15,8 +15,7 @@ export default function TaskComponent() {
   const [boardsTasks, setBoardsTasks] = useState(null);
   async function getDocHandler() {
     console.log('')
-    //const docRef = doc(db, "boards", `${id}/Tasks`, );
-    const docRef = db.collection('boards').doc(`${id}`).collection('Tasks')
+    const docRef = doc(db, "boards", `${id}`, );
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
