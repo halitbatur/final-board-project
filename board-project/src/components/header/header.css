@@ -1,0 +1,20 @@
+.navbar__third-party-icon-wrapper{
+filter: drop-shadow(1px 0px 0px rgba(232, 232, 232, 0.959))
+          drop-shadow(-0.2px 0px 0px rgba(232, 232, 232, 0.959))
+          drop-shadow(0px 0.5px 0px rgba(232, 232, 232, 0.959))
+          drop-shadow(0px -0.2px 0px rgba(232, 232, 232, 0.959))
+          drop-shadow(0.5px 0.5px 0px rgba(232, 232, 232, 0.959))
+          drop-shadow(-0.2px -0.2px 0px rgba(232, 232, 232, 0.959))
+          drop-shadow(-0.2px 0.5px 0px rgba(232, 232, 232, 0.959))
+          drop-shadow(0.5px -0.2px 0px rgba(232, 232, 232, 0.959));
+height: 2rem;
+opacity: 0.6;
+}
+
+
+.navbar__third-party-icon{
+display:inline-block;
+clip-path: polygon(50% 5%, 90% 27%, 90% 70%, 50% 90%, 50% 90%, 10% 69%, 10% 30%);
+padding: 0.4rem;
+background-color: white;
+}
