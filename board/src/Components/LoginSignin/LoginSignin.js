@@ -1,6 +1,6 @@
 import { async } from "@firebase/util";
 import React, { useRef, useState } from "react";
-import { firestore } from "../../firebase";
+import db from "../../firebase";
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 import "./LoginSignin.css";
 
@@ -9,7 +9,7 @@ function LoginSignin() {
 
   const emailRef = useRef();
   const passwordRef = useRef();
-  const ref = collection(firestore, "user")
+  const ref = collection(db, "user")
   const handleSave = async (e) => {
     e.preventDefault();
     let data = {
@@ -18,11 +18,7 @@ function LoginSignin() {
     }
 
     try {
-      addDoc(ref, data)
-      const users = await getDocs(collection(firestore, "user"));
-      querySnapshot.forEach(doc => {
-        console.log(doc.id, " =>", doc.data());
-      });
+      addDoc(collection(db, "users"), data);
     } catch (e) {
       console.log(e);
     }
