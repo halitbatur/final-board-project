@@ -3,7 +3,7 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-
+import FinishedTasks from "./Components/FinishedTasks";
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/finished" element={<FinishedTasks />} />
       </Routes>
       <Footer/>
     </div>
