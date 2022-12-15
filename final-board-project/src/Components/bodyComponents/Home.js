@@ -6,7 +6,9 @@ import Board from "./Board";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
 import { collection, onSnapshot } from "firebase/firestore";
-import EditButtonForm from "../forms/EditButtonForm";
+import EditButtonForm from "../forms/EditButtonForm"; 
+import {deleteDoc,doc} from "firebase/firestore";
+
 
 export default function Home() {
   const [boards, setBoards] = useState(null);
@@ -22,7 +24,18 @@ export default function Home() {
     []
   );
 
+const deleteBoard = async (id) => {
+  const docRef = doc(db, "boards", id);
 
+deleteDoc(docRef)
+.then(() => {
+    console.log("Entire Document has been deleted successfully.")
+})
+.catch(error => {
+    console.log(error);
+})
+
+}
   const [selectedBoardId, setSelectedBoardId] = useState(null)
 
   const [boardClick, setBoardClick] = useState(false);
@@ -47,6 +60,8 @@ export default function Home() {
               <button className="flex justify-center w-full px-4 py-2 font-bold text-center text-white bg-indigo-500 border-indigo-700 rounded hover:bg-indigo-400 hover:border-indigo-500" onClick={()=>setSelectedBoardId(ele.id)}>Edit</button>
               {selectedBoardId === ele.id && (<EditButtonForm taskId={ele.id} onClose={()=> setSelectedBoardId(null)}/>)}
 
+              <button onClick={() => {deleteBoard(ele.id)}}>Delete</button>
+
               </div>
             );
           })
@@ -56,6 +71,7 @@ export default function Home() {
           </div>
         )}
       </div>
+
     </div>
   );
 }
