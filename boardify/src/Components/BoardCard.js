@@ -6,10 +6,10 @@ import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 function BoardCard({ board, onDelete }) {
+  const [completed, setCompleted] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const [tasks, setTasks] = useState([]);
-  // const [sorted,setSorted]=useState([...tasks])
   const [newTask, setNewTask] = useState({
     title: "",
     description: "",
@@ -19,6 +19,7 @@ function BoardCard({ board, onDelete }) {
     isCompleted: false,
     taskId: uuidv4(),
   });
+  const boardsRef = doc(db, "boards", board.boardId);
 
   const handleSortingListChange = (e) => {
     if (e.target.value === "due_date") {
@@ -29,15 +30,15 @@ function BoardCard({ board, onDelete }) {
       setTasks([...sorted]);
     } else if (e.target.value === "desc") {
       let sorted = tasks.sort((a, b) => (a.title < b.title ? 1 : -1));
-      setTasks([...sorted])
+      setTasks([...sorted]);
     }
   };
+
   const handleTaskChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
-
+  
   const createTask = async (task) => {
-    const boardsRef = doc(db, "boards", board.boardId);
     if (isUpdate) {
       const updatedTasks = tasks.map((t) => {
         if (t.taskId === task.taskId) {
@@ -57,6 +58,20 @@ function BoardCard({ board, onDelete }) {
       });
       setShowForm(false);
     }
+  };
+
+  const handleIsCompleted = async (task) => {
+    const boardsRef = doc(db, "boards", board.boardId);
+    const updatedTasks = tasks.map((t) => {
+      if (t.taskId === task.taskId) {
+        return { ...t, isCompleted: !task.isCompleted };
+      } else {
+        return t;
+      }
+    });
+    await updateDoc(boardsRef, { tasks: updatedTasks });
+
+    setCompleted(() => !completed);
   };
 
   const editTask = async (task) => {
@@ -87,13 +102,12 @@ function BoardCard({ board, onDelete }) {
   };
 
   const deleteTask = async (taskId) => {
-    const boardsRef = doc(db, "boards", board.boardId);
     const updatedTasks = tasks.filter((task) => task.taskId !== taskId);
     await updateDoc(boardsRef, {
       tasks: updatedTasks,
     });
   };
-  console.log(tasks);
+
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(db, "boards"),
@@ -134,7 +148,9 @@ function BoardCard({ board, onDelete }) {
       <div className="flex flex-col gap-2">
         {tasks.map((task, index) => {
           return (
+            !task.isCompleted ?
             <TaskCard
+              handleIsCompleted={handleIsCompleted}
               key={index}
               task={task}
               editTask={editTask}
@@ -144,7 +160,10 @@ function BoardCard({ board, onDelete }) {
               setIsUpdate={setIsUpdate}
               isUpdate={isUpdate}
             />
+            : null
+          
           );
+          
         })}
       </div>
 

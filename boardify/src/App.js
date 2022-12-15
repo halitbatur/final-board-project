@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./Components/Home";
 import About from "./Components/About";
-
+import FinishedTasks from "./Components/FinishedTasks";
 function App() {
   return (
     <div className="App">
@@ -15,11 +15,15 @@ function App() {
         <Link className="hover:text-red-800" to="/about">
           About
         </Link>
+        <Link className="hover:text-red-800" to="/finished">
+          Finished Tasks
+        </Link>
       </header>
       
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/finished" element={<FinishedTasks />} />
       </Routes>
     </div>
   );

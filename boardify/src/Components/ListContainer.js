@@ -1,8 +1,8 @@
 import React from "react";
 
 function ListContainer({ boards }) {
-    console.log(boards)
-    return (
+
+  return (
         <div className="border-2 border-black min-h-[450px] md:mx-20 lg:mx-30 mb-10">
             {boards.map((board) => {
         return (
@@ -12,7 +12,7 @@ function ListContainer({ boards }) {
                 {board.tasks.map ( (task,index) => {
                     return (
                           < React.Fragment>
-                           <li key={index} className="flex-wrap md:justify-between pt-5 pb-5 px-10 text-center md:text-start md:flex md:px-8">
+                            <li key={index} className="flex-wrap md:justify-between pt-5 pb-5 px-10 text-center md:text-start md:flex md:px-8">
                             <div className="md:flex">
                             <svg className="justify-center pt-1 md:pt-1 mx-auto md:m-0" width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                  <path d="M139.61 35.5a12 12 0 0 0-17 0L58.93 98.81l-22.7-22.12a12 12 0 0 0-17 0L3.53 92.41a12 12 0 0 0 0 17l47.59 
