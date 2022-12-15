@@ -14,7 +14,7 @@ import {
 import { ReactComponent as ViewBoardIcon } from "../assets/icons/view-board.svg"
 import { ReactComponent as ViewListIcon } from "../assets/icons/view-list.svg"
 
-function DataToCard() {
+function DataCard() {
     const [newTitle, setNewTitle] = useState("")
     const [newDate, setNewDate] = useState("")
     const [newText, setNewText] = useState("")
@@ -64,4 +64,4 @@ function DataToCard() {
   </div>
 }
 
-export default DataToCard;
+export default DataCard;
