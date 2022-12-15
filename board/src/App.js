@@ -31,34 +31,56 @@ function App() {
       snapshot.docChanges().forEach((docChange) => {
         if (docChange.type === "added") {
           const boardId = docChange.doc.id;
-          const boardObj = { ...docChange.doc.data(), boardId };
+          const boardObj = { ...docChange.doc.data(), "cards": [], boardId };
+
+          onSnapshot(collection(db, "cards"), (snapshot) => {
+            snapshot.docChanges().forEach((docChange) => {
+              if (docChange.type === "added") {
+                const id = docChange.doc.id;
+                const cardObj = { ...docChange.doc.data(), id };
+                setCards((prevCardsList) => [...prevCardsList, cardObj]);
+                // console.log(cardObj.boardId, boardObj.id)
+                if (cardObj.boardId == boardObj.id) {
+                  // console.log("amal card id ", cardObj.boardId, "boardid", boardObj.id)
+                  boardObj['cards'].push({ ...cardObj })
+                }
+                // const board = boards.find((board) => board.id = cardObj.boardId);
+                // console.log(board)
+                // if (board !== undefined) {
+                //   if (board["cards"] == undefined) {
+                //     board["cards"] = []
+                //   }
+                //   board["cards"].push({ ...cardObj })
+                //   // setBoards(boards);
+                // }
+
+              }
+            }
+            );
+
+          });
+
+
+
+
           setBoards((prevBoardsList) => [...prevBoardsList, boardObj]);
         }
       }
       );
-      // console.log(boards);
 
     });
 
-  }, []);
 
-  useEffect(() => {
-    onSnapshot(collection(db, "cards"), (snapshot) => {
-      snapshot.docChanges().forEach((docChange) => {
-        if (docChange.type === "added") {
-          const cardId = docChange.doc.id;
-          const cardObj = { ...docChange.doc.data(), cardId };
-          setCards((prevCardsList) => [...prevCardsList, cardObj]);
-        }
-      }
-      );
-      // console.log(cards);
 
-    });
+
+
 
   }, []);
 
+  // useEffect(() => {
+  // }, []);
 
+  // console.log(boards)
 
   const addboardHandler = (name) => {
     // const addboardHandler = async (name) => {
@@ -112,37 +134,43 @@ function App() {
     addDoc(collection(db, "cards"), {
       boardId: id,
       description: "newtask",
-      dueDate: serverTimestamp(),
+      date: serverTimestamp(),
       status: "done",
-      cardName: title
+      title: title
     });
-    const board = boards.find((board) => board.id = id);
-    if (!board["cards"]) {
-      board["cards"] = []
-    }
-    board["cards"].push({
-      boardId: id,
-      description: "newtask",
-      dueDate: serverTimestamp(),
-      status: "done",
-      cardName: title
-    })
     setBoards(boards);
+
   };
 
 
-  const removeCard = (bid, cid) => {
-    const index = boards.findIndex((item) => item.id === bid);
-    if (index < 0) return;
+  const removeCard = async (bid, cid) => {
+    // const index = boards.findIndex((item) => item.id === bid);
+    // if (index < 0) return;
 
-    const tempBoards = [...boards];
-    const cards = tempBoards[index].cards;
+    // const tempBoards = [...boards];
+    // const cards = tempBoards[index].cards;
 
-    const cardIndex = cards.findIndex((item) => item.id === cid);
-    if (cardIndex < 0) return;
+    // const cardIndex = cards.findIndex((item) => item.id === cid);
+    // if (cardIndex < 0) return;
 
-    cards.splice(cardIndex, 1);
-    setBoards(tempBoards);
+    // cards.splice(cardIndex, 1);
+    // setBoards(tempBoards);
+    await deleteDoc(doc(db, "cards", cid));
+    // console.log(boards)
+    // boards.map((board) => {
+    //   console.log(board.cards.filter((card) => card.id !== cid))
+    // })
+    const newBoards = boards.map((board) => {
+      board.cards.forEach((card, index) => {
+        if (card.id == cid) {
+          board.cards.splice(index, 1)
+        }
+
+      });
+      return board
+    });
+
+    setBoards(newBoards);
   };
 
   const dragEnded = (bid, cid) => {
