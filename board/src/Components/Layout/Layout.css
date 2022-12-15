@@ -1,0 +1,10 @@
+.layoutNavbar {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar_element {
+    text-decoration: none;
+    color: black;
+}
