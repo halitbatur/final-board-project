@@ -4,10 +4,11 @@ import About from "./Components/About";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import FinishedTasks from "./Components/FinishedTasks";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
-    <div className="App font-poppins">
+    <div className="App font-poppins background flex flex-col justify-evenly ">
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />

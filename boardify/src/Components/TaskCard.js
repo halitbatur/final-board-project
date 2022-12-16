@@ -26,7 +26,11 @@ const TaskCard = ({
         <h1 className="font-bold text-black text-lg">{task.title}</h1>
         <button
           className="btn btn-primary"
-          onClick={handleDelete}> X </button>
+          onClick={handleDelete}
+        >
+          {" "}
+          X{" "}
+        </button>
       </div>
 
       {task.description ? (
@@ -78,16 +82,16 @@ const TaskCard = ({
           </div>
         ) : null}
 
-        <button
-          className="border-2 border-black mt-5 md:mt-8 w-12 bg-black
+<button
+  className="border-2 border-black mt-5 md:mt-8 w-12 bg-black
         text-white hover:cursor-pointer hover:text-white hover:bg-red-800
         hover:border-red-800"
-          onClick={handleEdit}
-        >
-          Edit
-        </button>
-      </div>
-    </div>
+  onClick={handleEdit}
+>
+  Edit
+</button>
+      </div >
+    </div >
   );
 };
 

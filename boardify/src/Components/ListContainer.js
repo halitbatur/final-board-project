@@ -1,7 +1,7 @@
 import React from "react";
 
 function ListContainer({ boards }) {
-
+  console.log(boards)
   return (
     <div className="border-2 border-black min-h-[450px] md:mx-20 lg:mx-30 mb-10">
       {boards.map((board) => {
@@ -26,7 +26,6 @@ function ListContainer({ boards }) {
                         <h4 className="font-bold text-xl md:pl-2 text-[#262626]">{task.title}</h4>
                         <p className="md:pl-3 text-lg text-center text-[#262626]">{task.description}</p>
                       </div>
-
                       <div className="flex justify-center pt-3 md:pt-0 md:justify-end ">
                         <svg className={{ paddingTop: "6px", color: "#8B0000" }} width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5
@@ -42,17 +41,18 @@ function ListContainer({ boards }) {
                         </svg>
                       </div>
                     </li>
+                    <hr className="border-[#E5E5E5]" />
                   </>
-                )
+                );
               })}
+
             </ul>
           </>
-        );
+        )
       })}
-
-
     </div>
   );
 }
+
 
 export default ListContainer;
