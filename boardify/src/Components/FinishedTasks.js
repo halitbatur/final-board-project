@@ -26,19 +26,12 @@ const FinishedTasks = () => {
     >
       {boards.map((board) => {
         return (
-          <div> 
-            <h1 className=" text-2xl text-center"> {board.title} </h1>
-            {board.tasks.map((task) => { 
-              // console.log(task.isCompleted)
+          <div className="px-8 my-10 lg:mb-10 bg-red-800 md:mx-3 border-2 rounded-xl
+            border-black mx-auto justify-center align-center w-56 md:w-72">
+            <h1 className="text-white text-2xl text-center"> {board.title} </h1>
+            {board.tasks.map((task) => {
               return(
-              task.isCompleted ?
-              
-              <FinishedTaskCard
-               task={task}
-              /> 
-              :  
-              null
-         
+                task.isCompleted ? <FinishedTaskCard task={task} /> : null
               )
             })}
           </div>
