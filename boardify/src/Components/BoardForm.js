@@ -3,15 +3,15 @@ import React from "react";
 function BoardForm({onSubmitt,onChange,newBoard}) {
  
   return (
-    <div className="pt-2">
+    <div className="mt-6 mx-80 card rounded-xl bg-[#2c2c2c] shadow-xl">
       <form
-        className="border-4 border-black mx-auto justify-center
+        className="  mx-auto justify-center
       align-center max-w-sm md:max-w-md text-xl px-10 pb-10 mt-5"
       onSubmit={onSubmitt}
       >
-        <h1 className="text-center py-5 font-bold">Board Creation</h1>
+        <h1 className="text-center py-5 font-bold text-[#b5b5b5]">Board Creation</h1>
         <input
-          className="w-52 md:w-64 border-4 border-black placeholder:italic pl-2
+          className="w-52 md:w-64 border-2 rounded-md bg-[#EFEFEF] border-[#343434] placeholder:font-extralight text-[#616161] text-base p-2 pl-2
           placeholder:pl-1"
           value={newBoard.title}
           type="text"
@@ -20,7 +20,7 @@ function BoardForm({onSubmitt,onChange,newBoard}) {
           onChange={onChange}
         />
         <input
-          className="px-3 py-1 bg-black text-white hover:bg-red-800
+          className="btn ml-3 rounded-md text-xs w-30 bg-[#6BAF5B] hover:bg-[#262626] hover:shadow-2xl transition 
           hover:cursor-pointer"
           type="submit"
           value="Submit"

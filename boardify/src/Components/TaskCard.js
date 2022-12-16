@@ -25,7 +25,7 @@ const TaskCard = ({
       <div className='sm:flex-wrap flex justify-between'>
         <h1 className="font-bold text-black text-lg">{task.title}</h1>
         <button
-          className="text-black font-bold -mt-0 hover:text-red-800"
+          className="btn btn-primary"
           onClick={handleDelete}> X </button>
       </div>
 

@@ -57,7 +57,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div >
       <BoardForm
         onSubmitt={handleSubmit}
         onChange={handleOnChange}
