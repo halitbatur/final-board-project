@@ -71,7 +71,7 @@ function BoardCard({ board, onDelete }) {
     });
     await updateDoc(boardsRef, { tasks: updatedTasks });
 
-    setCompleted(() => !completed);
+    setCompleted(() => !completed); 
   };
 
   const editTask = async (task) => {
@@ -159,7 +159,7 @@ function BoardCard({ board, onDelete }) {
               setShowForm={setShowForm}
               setIsUpdate={setIsUpdate}
               isUpdate={isUpdate}
-            />
+            /> 
             : null
           
           );
