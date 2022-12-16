@@ -8,6 +8,7 @@ import Spinner from "./Spinner";
 import { collection, onSnapshot } from "firebase/firestore";
 import EditButtonForm from "../forms/EditButtonForm"; 
 import {deleteDoc, doc} from "firebase/firestore";
+import Toggle from "../bodyComponents/tasksPageComponents/Toggle.js";
 
 
 export default function Home() {
@@ -24,12 +25,15 @@ export default function Home() {
     []
   );
 
+
+  // delete button
+
 const deleteBoard = async (id) => {
   const docRef = doc(db, "boards", id);
 
   deleteDoc(docRef)
   .then(() => {
-      console.log("Entire Document has been deleted successfully.")
+      // console.log("Entire Document has been deleted successfully.")
   })
   .catch(error => {
       console.log(error);
@@ -37,8 +41,22 @@ const deleteBoard = async (id) => {
 
 }
   const [selectedBoardId, setSelectedBoardId] = useState(null)
-
   const [boardClick, setBoardClick] = useState(false);
+  const [cName, setClassName] = useState('list');
+  const [toggleViewMode, setToggleViewMode] = useState(false);
+
+  const updateButton = (toggle, name) => {
+    setToggleViewMode(toggle);
+    if (name === 'list') {
+    setClassName('grid');
+    }
+
+    if(name === 'grid') {
+      setClassName('list');
+    }
+};
+
+
   return (
     <div className="relative flex flex-col items-center justify-center gap-10 bg-gray-50">
       <button
@@ -48,8 +66,15 @@ const deleteBoard = async (id) => {
       >
         Create a new Workspace
       </button>
+
+      
+      <button className={"view-btn"}  onClick={() => updateButton(!toggleViewMode, cName)}>
+        {!toggleViewMode ? 'grid' : 'list'}
+      </button>
+      
+
       <BoardForm trigger={boardClick} setTrigger={setBoardClick} />
-      <div className="flex flex-wrap items-center justify-center gap-16 mt-10">
+      <div className={`flex flex-wrap items-center justify-center gap-16 mt-10 ${cName}`}>
         {boards ? (
           boards.map((ele) => {
             return (

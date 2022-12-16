@@ -10,6 +10,7 @@ import { AuthContext } from "./Components/bodyComponents/Auth.js";
 // import PrivateRoute from "./Components/bodyComponents/PrivateRoute.js";
 import About from "./Components/bodyComponents/About";
 import TaskComponent from "./Components/bodyComponents/tasksPageComponents/TaskComponent";
+import Toggle from "./Components/bodyComponents/tasksPageComponents/Toggle"; 
 
 
 function App() {
