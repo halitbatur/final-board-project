@@ -110,18 +110,18 @@ function BoardCard({ board, onDelete }) {
 
   return (
     <div
-      className="px-8 mt-10 lg:mb-10 bg-red-800 md:mx-3 border-2 rounded-xl
+      className="px-8 mt-10 lg:mb-10 bg-[#262626] md:mx-3 border-2 rounded-xl
       border-black mx-auto justify-center align-center w-56 md:w-72"
     >
       <button
-        className="border-2 border-black w-[50px] float-right bg-black
+        className=" rounded  w-[50px] float-right bg-[#ff3b3b]
         text-white font-bold mt-4"
         onClick={() => onDelete(board.boardId)}
       >
         X
       </button>
 
-      <select onChange={handleSortingListChange}>
+      <select className="text-[#262626] rounded mt-3" onChange={handleSortingListChange}>
         <option value="due_date">due Date</option>
         <option value="asc">asc</option>
         <option value="desc">desc</option>

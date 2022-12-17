@@ -2,7 +2,7 @@
 
 function Footer(){
 
-    return(<footer className=" flex justify-items-start footer footer-center p-8 bg-[#262626] text-base-content ">
+    return(<footer className=" mt-auto flex justify-items-start footer footer-center p-8 bg-[#262626] text-base-content ">
    <div className="flex text-xs ">
     <span className="font-normal ">made with🔥by:</span>
    <div className="grid grid-flow-col gap-1 font-semibold">

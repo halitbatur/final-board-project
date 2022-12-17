@@ -64,8 +64,8 @@ function Home() {
         newBoard={newBoard}
       />
 
-      <div className="flex ml-10 md:ml-20 mt-5 px-3 py-1 font-bold">
-        <h1 className="mr-2 text-2xl"> Board</h1>
+      <div className="flex ml-10 md:ml-20 mt-5 px-3 py-1 font-bold text-[#262626]">
+        <h1 className="mr-2 text-2xl "> Board</h1>
         <Switch isOn={value} onColor="black" handleToggle={() => setValue( () => !value)}/>
         <h1 className="ml-2 text-2xl"> List</h1>
       </div>

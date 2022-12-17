@@ -3,11 +3,11 @@ import React from "react";
 function ListContainer({ boards }) {
     console.log(boards)
     return (
-        <div className="border-2 border-black min-h-[450px] md:mx-20 lg:mx-30 mb-10">
+        <div className=" min-h-[450px] md:mx-20 lg:mx-30 mb-10">
             {boards.map((board) => {
         return (
           <>
-            <h1 key={board.boardId} className="bg-red-800 text-white font-bold pl-7 py-5 text-2xl">{board.title} </h1>
+            <h1 key={board.boardId} className="bg-[#262626] text-white font-bold pl-7 py-5 text-xl">{board.title} </h1>
             <ul>
                 {board.tasks.map ( (task,index) => {
                     return (
@@ -23,8 +23,8 @@ function ListContainer({ boards }) {
                                   16h288a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H208a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h288a16 16 0 0 0 
                                   16-16v-32a16 16 0 0 0-16-16z"/>
                              </svg>
-                             <h4 className="font-bold text-xl md:pl-2">{task.title}</h4>
-                             <p className="md:pl-3 text-lg text-center">{task.description}</p>
+                             <h4 className="font-bold text-xl md:pl-2 text-[#262626]">{task.title}</h4>
+                             <p className="md:pl-3 text-lg text-center text-[#262626]">{task.description}</p>
                             </div>
                              
                              <div className="flex justify-center pt-3 md:pt-0 md:justify-end ">
