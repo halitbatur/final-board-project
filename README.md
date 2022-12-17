@@ -19,8 +19,7 @@ are:
 
 ## Code Requirements
 
-- Only use function components (they were not taught on learn.co but they are
-  what are used normally in practice). They are very similar to normal classes
+- Only use function components
 - You will want to look into how **hooks** are used
 
 ## Data Requirements
@@ -75,7 +74,7 @@ Two minute demo of:
 - Creation and reading of a board in Firebase
 - Creation and reading of a board item in Firebase
 - Working navbar with React Routing
-- Editing and Existing Board item in Firebase
+- Editing an Existing Board item in Firebase
 
 The user should be able to fill out forms to create a board and board item and
 have it show up in the UI, no matter how it looks. No styling is required (I
