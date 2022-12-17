@@ -63,8 +63,8 @@ const TaskCard = ({
           <div className='pt-2'>
             <p className="text-sm -mb-3">assigned to</p>
             <p className="border-2 border-red-800 rounded-2xl text-center
-            align-middle mt-4 w-16 px-2 bg-red-800 text-white mt-4 w-28
-            text-white">
+            align-middle  px-2 bg-red-800 text-white mt-4 w-28
+            ">
               {task.assignee}
             </p>
           </div>

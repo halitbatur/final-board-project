@@ -73,7 +73,7 @@ function TaskForm({
             <label className="font-bold">Description</label>
             <input
               className="border-2 w-32 h-20 pl-2 md:w-40 border-black placeholder:italic placeholder:pl-0.5
-            align-text-bottom align-top"
+            align-top"
               type="text"
               placeholder="enter a description"
               onChange={handleTaskChange}
