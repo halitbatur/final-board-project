@@ -15,3 +15,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.center {
+  display: block;
+  margin: auto;
+  padding: 10px;
+  background: no-repeat;
+  background-size: 100%;
+  position:relative;
+  right:159px;
+  padding-top:120px;
+  
+  
+ 
+}
+.fullpage{
+  
+    background: no-repeat;
+    background-size: 100%;
+    
+    
+  
+  
+  
+}
+.names{
+  display: flex;
+  justify-content: space-between;
+  
+}

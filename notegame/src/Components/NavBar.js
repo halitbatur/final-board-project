@@ -1,6 +1,7 @@
 import React from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
+import pan from "./pan.jpg"
 
 export default function NavBar() {
   return (
@@ -20,17 +21,19 @@ export default function NavBar() {
               
             </ul>
        </nav> */}
+       
 
       <nav className="navBarContainer shadow-xl p-3 border-gray-200 rounded bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+     
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <a href="#" className="flex items-center">
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="h-6 mr-3 sm:h-10"
+          <img
+              src={pan}
+              class="h-6 mr-3 sm:h-10 rounded-full"
               alt="Flowbite Logo"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              Board
+            Recipe Note Board
             </span>
           </a>
           <button
@@ -72,7 +75,7 @@ export default function NavBar() {
               <li>
                 <Link
                   to="/"
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent fa fa-home"
                 >
                   Home
                 </Link>
@@ -80,7 +83,7 @@ export default function NavBar() {
               <li>
                 <Link
                   to="/about"
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent fa fa-address-card-o"
                 >
                   About
                 </Link>
@@ -88,7 +91,7 @@ export default function NavBar() {
               <li>
                 <Link
                   to="/teammembers"
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent fa fa-group"
                 >
                   Team-Members
                 </Link>

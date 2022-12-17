@@ -41,7 +41,7 @@ const Form = () => {
   };
 
   return (
-    <form className="w-full  " onSubmit={handleSubmit}>
+    <form className="center w-full max-w-lg  " onSubmit={handleSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
@@ -80,6 +80,13 @@ const Form = () => {
             onChange={(e) => setInfo(e.target.value)}
             required
           ></textarea>
+           <label for="Date"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+           <input type="date" id="date" name="date"></input>
+           <label for="DueDate"class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due Date:</label>
+           <input type="date" id="DueDate" name="DueDate"></input>
+           <input type="checkbox" id="done" name="donetask" value="Done"></input>
+           <label for="done"> The task is done </label><br></br>
         </div>
       </div>
       <button

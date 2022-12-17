@@ -1,5 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
+import background2 from "./recipe.png"
 
 import {
   collection,
@@ -36,17 +37,46 @@ function Home() {
   }
 
   return (
-    <div className="container my-12 mx-auto px-4 md:px-12">
-      <h1 className="text-center text-2xl italic font-medium text-blue-900 dark:text-black">
-        Home page
+    <div className=" fullpage container my-12 mx-auto px-4 md:px-12"style={{ backgroundImage: `url(${background2})` }}>
+      <h1 className="text-center text-2xl italic font-medium text-blue-900 dark:text-black ">
+      What's For Dinner?!👩‍🍳😋
       </h1>
 
       <br />
       <br />
       <br />
+      
 
       <Form />
       {/* Cards */}
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/> 
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
 
       {isLoading ? (
         <div class="text-center">
