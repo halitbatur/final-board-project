@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+.navBarContainer {
+  /* box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.49); */
+  /* background-color: #ffffff; */
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 3%;
+  width: 80%;
+  position: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.navBarContainer ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1 rem;
+}
+
+.navBarContainer a {
+  height: 100%;
+  display: flex;
+  padding: 0.3rem;
+  font-size: 1.5rem;
+}
+.navBarContainer li:hover {
+  color: rgb(150, 8, 91);
+}
+h1 {
+  font-size: 2.5rem;
+  color: #c42043;
+}
