@@ -37,7 +37,7 @@ function About() {
 						</ul>
 					</div>
 					<div className="text-center text-gray-500 dark:text-gray-400">
-						<img className=" grayscale hover:grayscale-0 transition  mx-auto mb-4 w-36 h-36 rounded-full" src="https://cdn.discordapp.com/avatars/791378837987917885/4d8c6e0fcc36b3fc0201a5f803865d4c.webp?size=1024" alt="Jese Avatar" />
+						<img className=" grayscale hover:grayscale-0 transition  mx-auto mb-4 w-36 h-36 rounded-full" src="https://pbs.twimg.com/profile_images/1590968738358079488/IY9Gx6Ok.jpg" alt="Jese Avatar" />
 						<h3 className="mb-1 text-2xl font-bold tracking-tight text-[#2f2f2f]">
 							<a href="https://github.com/RageOfKurd#">Hevar Tofiq</a>
 						</h3>
