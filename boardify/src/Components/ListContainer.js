@@ -11,6 +11,7 @@ function ListContainer({ boards }) {
             <ul>
               {board.tasks.map((task, index) => {
                 return (
+                  !task.isCompleted ?
                   <>
                     <li key={index} className="flex-wrap md:justify-between pt-5 pb-5 px-10 text-center md:text-start md:flex md:px-8">
                       <div className="md:flex">
@@ -42,10 +43,9 @@ function ListContainer({ boards }) {
                       </div>
                     </li>
                     <hr className="border-[#E5E5E5]" />
-                  </>
+                  </> : null
                 );
               })}
-
             </ul>
           </>
         )
